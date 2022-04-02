@@ -9,7 +9,7 @@ interface GithubService {
     /**
      * ユーザーを検索して一覧を取得する
      */
-    fun users(userName: String): Single<List<User>>
+    fun users(userName: String): Single<User>
 
     /**
      * ユーザー詳細情報を取得する

@@ -14,7 +14,7 @@ import javax.inject.Singleton
 class GithubServiceImpl @Inject constructor(
     private val service: RetrofitService,
 ) : GithubService {
-    override fun users(userName: String): Single<List<User>> {
+    override fun users(userName: String): Single<User> {
         // TODO HttpException時のstatus codeを用いたエラーハンドリングやリトライ処理
         return service.users(userName)
     }

@@ -16,7 +16,7 @@ class GithubRepository @Inject constructor(
     /**
      * ユーザーを検索して一覧を取得する
      */
-    fun users(userName: String): Single<List<User>> {
+    fun users(userName: String): Single<User> {
         return service.users(userName)
     }
 

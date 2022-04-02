@@ -13,7 +13,7 @@ interface RetrofitService {
      * ユーザーを検索して一覧を取得する
      */
     @GET("search/users?q={user_name}")
-    fun users(@Path("user_name") userName: String): Single<List<User>>
+    fun users(@Path("user_name") userName: String): Single<User>
 
     /**
      * ユーザー詳細情報を取得する
