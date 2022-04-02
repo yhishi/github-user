@@ -2,4 +2,5 @@
     <string name="app_name">github-user</string>
     <string name="api_url">https://api.github.com/</string>
     <string name="no_user_message">検索結果はありません</string>
+    <string name="user_search_hint">ユーザー検索</string>
 </resources>
