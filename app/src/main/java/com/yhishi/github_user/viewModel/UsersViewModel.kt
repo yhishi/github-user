@@ -6,8 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import com.yhishi.github_user.domain.model.ui.User
+import com.yhishi.github_user.domain.model.ui.UserDetail
 import com.yhishi.github_user.domain.repository.GithubRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.rxjava3.kotlin.Singles
 import javax.inject.Inject
 
 
@@ -17,6 +19,7 @@ class UsersViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _users = MutableLiveData<List<User>>()
+    private val _userDetail = MutableLiveData<UserDetail>()
 
     val users: LiveData<List<User>> get() = _users
     val userListVisibility: LiveData<Int>
@@ -35,6 +38,7 @@ class UsersViewModel @Inject constructor(
                 View.GONE
             }
         }
+    val userDetail: LiveData<UserDetail> get() = _userDetail
 
     fun searchUsers(userName: String) {
         // TODO プログレス表示
@@ -45,6 +49,27 @@ class UsersViewModel @Inject constructor(
                         User.of(user)
                     }
                 )
+            }
+            .doOnError {
+                // TODO エラー処理
+            }
+            .onErrorComplete()
+            .subscribe()
+    }
+
+    fun requestUserDetailInfo(userName: String) {
+        Singles.zip(
+            repository.userDetail(userName),
+            repository.repositories(userName),
+        )
+            .map { (userDetail, repositories) ->
+                UserDetail.of(
+                    userDetail = userDetail,
+                    repositories = repositories,
+                )
+            }
+            .doOnSuccess {
+                _userDetail.postValue(it)
             }
             .doOnError {
                 // TODO エラー処理
