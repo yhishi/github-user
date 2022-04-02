@@ -14,7 +14,9 @@ import com.yhishi.github_user.domain.model.ui.User
 /**
  * ユーザー一覧のAdapter
  */
-class UserAdapter : ListAdapter<User, UserViewHolder>(DiffCallback) {
+class UserAdapter(
+    private val onClickItem: (String) -> Unit,
+) : ListAdapter<User, UserViewHolder>(DiffCallback) {
 
     private object DiffCallback : DiffUtil.ItemCallback<User>() {
         override fun areItemsTheSame(
@@ -47,6 +49,10 @@ class UserAdapter : ListAdapter<User, UserViewHolder>(DiffCallback) {
             Picasso.get()
                 .load(data.avatarUrl)
                 .into(avatarImage)
+
+            cardView.setOnClickListener {
+                onClickItem(data.userName)
+            }
         }
     }
 }

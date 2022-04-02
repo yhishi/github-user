@@ -49,7 +49,9 @@ class UsersFragment : Fragment(R.layout.users_fragment) {
             }
         }
 
-        val adapter = UserAdapter()
+        val adapter = UserAdapter { userName ->
+            viewModel.requestUserDetailInfo(userName = userName)
+        }
         binding.recyclerView.adapter = adapter
 
         viewModel.users.observe(viewLifecycleOwner) {
