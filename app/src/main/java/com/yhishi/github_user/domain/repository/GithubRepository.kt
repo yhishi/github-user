@@ -1,6 +1,7 @@
-package com.yhishi.github_user.domain.repository.api
+package com.yhishi.github_user.domain.repository
 
 import com.yhishi.github_user.domain.model.api.User
+import com.yhishi.github_user.domain.repository.api.GithubService
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 import javax.inject.Singleton
