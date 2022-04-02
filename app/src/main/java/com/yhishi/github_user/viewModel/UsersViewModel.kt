@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UsersViewModel @Inject constructor(
-    repository: GithubRepository,
+    private val repository: GithubRepository,
 ) : ViewModel() {
 
     private val _users = MutableLiveData<List<User>>()
@@ -36,10 +36,9 @@ class UsersViewModel @Inject constructor(
             }
         }
 
-    init {
+    fun searchUsers(userName: String) {
         // TODO プログレス表示
-        // TODO 検索文字列をuserNameとして渡す
-        repository.users(userName = "yhishi")
+        repository.users(userName = userName)
             .doOnSuccess { users ->
                 _users.postValue(
                     users.userInfo.map { user ->

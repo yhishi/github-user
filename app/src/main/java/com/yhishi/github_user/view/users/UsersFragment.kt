@@ -1,9 +1,12 @@
 package com.yhishi.github_user.view.users
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -33,11 +36,39 @@ class UsersFragment : Fragment(R.layout.users_fragment) {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
+        binding.searchUserName.setOnEditorActionListener { _, actionId, _ ->
+            when (actionId and EditorInfo.IME_MASK_ACTION) {
+                EditorInfo.IME_ACTION_SEARCH,
+                EditorInfo.IME_ACTION_DONE -> {
+                    search()
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
+
         val adapter = UserAdapter()
         binding.recyclerView.adapter = adapter
 
         viewModel.users.observe(viewLifecycleOwner) {
             adapter.submitList(it)
+        }
+    }
+
+    private fun search() {
+        val inputText = binding.searchUserName.text.toString().trim()
+        if (inputText.isNotEmpty()) {
+            hideKeyBoard()
+            viewModel.searchUsers(userName = inputText)
+        }
+    }
+
+    private fun hideKeyBoard() {
+        requireActivity().currentFocus?.let { view ->
+            val imm = requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
 

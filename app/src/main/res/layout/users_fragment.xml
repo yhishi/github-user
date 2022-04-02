@@ -43,6 +43,7 @@
                         android:autofillHints="@null"
                         android:background="@drawable/background_search_user_name_edit_text"
                         android:hint="@string/user_search_hint"
+                        android:imeOptions="actionSearch"
                         android:inputType="text"
                         android:lines="1"
                         android:minHeight="35dp"
