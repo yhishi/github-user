@@ -15,13 +15,12 @@ class UsersViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _users = MutableLiveData<List<User>>()
-
     val users: LiveData<List<User>> get() = _users
 
     init {
         // TODO プログレス表示
         // TODO 検索文字列をuserNameとして渡す
-        repository.users("hishi")
+        repository.users(userName = "yhishi")
             .doOnSuccess { users ->
                 _users.postValue(
                     users.userInfo.map { user ->
