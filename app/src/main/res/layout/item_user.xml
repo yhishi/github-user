@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="6dp"
         android:layout_marginTop="6dp"
+        android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="4dp"
         app:cardElevation="5dp">
 
