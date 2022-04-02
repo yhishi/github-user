@@ -6,14 +6,15 @@ import com.yhishi.github_user.domain.model.api.UserDetail
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface RetrofitService {
     /**
      * ユーザーを検索して一覧を取得する
      */
-    @GET("search/users?q={user_name}")
-    fun users(@Path("user_name") userName: String): Single<User>
+    @GET("search/users")
+    fun users(@Query("q") userName: String): Single<User>
 
     /**
      * ユーザー詳細情報を取得する
