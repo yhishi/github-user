@@ -1,10 +1,12 @@
 package com.yhishi.github_user.domain.repository.api.retrofit
 
+import com.yhishi.github_user.domain.model.api.Repository
 import com.yhishi.github_user.domain.model.api.User
 import com.yhishi.github_user.domain.model.api.UserDetail
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
+
 
 interface RetrofitService {
     /**
@@ -18,4 +20,10 @@ interface RetrofitService {
      */
     @GET("search/users/{user_name}")
     fun userDetail(@Path("user_name") userName: String): Single<UserDetail>
+
+    /**
+     * ユーザーのリポジトリ情報を取得する
+     */
+    @GET("users/{user_name}/repos")
+    fun repositories(@Path("user_name") userName: String): Single<List<Repository>>
 }
