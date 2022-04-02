@@ -45,7 +45,6 @@ data class UserDetail(
     val type: String,
     @Json(name = "site_admin")
     val siteAdmin: Boolean,
-
     @Json(name = "name")
     val name: String?,
     @Json(name = "company")
