@@ -12,6 +12,7 @@ data class Repository(
     val starCountText: String,
     val description: String?,
     val fork: Boolean,
+    val repositoryUrl: String,
     val updatedTime: ZonedDateTime,
 ) {
     companion object {
@@ -29,6 +30,7 @@ data class Repository(
                 starCountText = "☆" + repository.starCount.toString(),
                 description = repository.description,
                 fork = repository.fork,
+                repositoryUrl = repository.repositoryUrl,
                 updatedTime = repository.updatedTime,
             )
         }

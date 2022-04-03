@@ -21,6 +21,8 @@ data class Repository(
     val private: Boolean,
     @Json(name = "owner")
     val ownerInfo: UserInfo,
+    @Json(name = "html_url")
+    val repositoryUrl: String,
     @Json(name = "language")
     val language: String?,
     @Json(name = "stargazers_count")
