@@ -37,6 +37,10 @@ class UserDetailFragment : Fragment(R.layout.user_detail_fragment) {
         Picasso.get()
             .load(userDetailData.avatarUrl)
             .into(binding.avatarImage)
+
+        val adapter = RepositoryAdapter()
+        binding.recyclerView.adapter = adapter
+        adapter.submitList(userDetailData.repositories)
     }
 
     companion object {
