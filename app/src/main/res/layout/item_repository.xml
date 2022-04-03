@@ -15,7 +15,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_bottom_separator">
+        android:background="@drawable/background_bottom_separator"
+        android:foreground="?android:attr/selectableItemBackground">
 
         <TextView
             android:id="@+id/name"

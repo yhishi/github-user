@@ -13,7 +13,9 @@ import com.yhishi.github_user.domain.model.ui.Repository
 /**
  * リポジトリ一覧のAdapter
  */
-class RepositoryAdapter : ListAdapter<Repository, RepositoryViewHolder>(DiffCallback) {
+class RepositoryAdapter(
+    private val onClickItem: (String) -> Unit,
+) : ListAdapter<Repository, RepositoryViewHolder>(DiffCallback) {
 
     private object DiffCallback : DiffUtil.ItemCallback<Repository>() {
         override fun areItemsTheSame(
@@ -42,5 +44,8 @@ class RepositoryAdapter : ListAdapter<Repository, RepositoryViewHolder>(DiffCall
     override fun onBindViewHolder(holder: RepositoryViewHolder, position: Int) {
         val data = getItem(position)
         holder.binding.repository = data
+        holder.binding.root.setOnClickListener {
+            onClickItem(data.repositoryUrl)
+        }
     }
 }

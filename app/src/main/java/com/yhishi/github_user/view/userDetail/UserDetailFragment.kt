@@ -38,7 +38,9 @@ class UserDetailFragment : Fragment(R.layout.user_detail_fragment) {
             .load(userDetailData.avatarUrl)
             .into(binding.avatarImage)
 
-        val adapter = RepositoryAdapter()
+        val adapter = RepositoryAdapter { repositoryUrl ->
+
+        }
         binding.recyclerView.adapter = adapter
 
         if (userDetailData.repositories.isNotEmpty()) {
