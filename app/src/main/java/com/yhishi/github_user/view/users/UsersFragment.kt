@@ -9,9 +9,11 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import com.yhishi.github_user.R
 import com.yhishi.github_user.databinding.UsersFragmentBinding
+import com.yhishi.github_user.view.userDetail.UserDetailFragment
 import com.yhishi.github_user.viewModel.UsersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -57,6 +59,19 @@ class UsersFragment : Fragment(R.layout.users_fragment) {
         viewModel.users.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
+
+        viewModel.userDetail.observe(viewLifecycleOwner) {
+            parentFragmentManager.commit {
+                add(
+                    R.id.container,
+                    UserDetailFragment.newInstance(it),
+                    UserDetailFragment::class.java.simpleName
+                )
+                addToBackStack(null)
+                hide(this@UsersFragment)
+            }
+        }
+
     }
 
     private fun search() {
