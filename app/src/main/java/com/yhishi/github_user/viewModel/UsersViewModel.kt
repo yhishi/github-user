@@ -63,9 +63,10 @@ class UsersViewModel @Inject constructor(
             repository.repositories(userName),
         )
             .map { (userDetail, repositories) ->
+                val notForkedRepositories = repositories.filter { !it.fork }
                 UserDetail.of(
                     userDetail = userDetail,
-                    repositories = repositories,
+                    repositories = notForkedRepositories,
                 )
             }
             .doOnSuccess {
