@@ -22,7 +22,7 @@ data class Repository(
     @Json(name = "owner")
     val ownerInfo: UserInfo,
     @Json(name = "language")
-    val language: String,
+    val language: String?,
     @Json(name = "stargazers_count")
     val starCount: Int,
     @Json(name = "description")

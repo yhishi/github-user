@@ -8,7 +8,7 @@ import java.time.ZonedDateTime
 data class Repository(
     val id: Int,
     val name: String?,
-    val language: String,
+    val language: String?,
     val starCount: Int,
     val description: String?,
     val fork: Boolean,

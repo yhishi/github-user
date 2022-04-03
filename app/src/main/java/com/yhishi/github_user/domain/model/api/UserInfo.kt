@@ -45,5 +45,5 @@ data class UserInfo(
     @Json(name = "site_admin")
     val siteAdmin: Boolean,
     @Json(name = "score")
-    val score: Float,
+    val score: Float?,
 )
