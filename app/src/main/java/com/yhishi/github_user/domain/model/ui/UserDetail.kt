@@ -1,6 +1,7 @@
 package com.yhishi.github_user.domain.model.ui
 
 import android.net.Uri
+import java.io.Serializable
 
 /**
  * ユーザー詳細のUIモデル
@@ -13,7 +14,7 @@ data class UserDetail(
     val followerText: String,
     val followingText: String,
     val repositories: List<Repository>,
-) {
+) : Serializable {
     companion object {
         fun of(
             userDetail: com.yhishi.github_user.domain.model.api.UserDetail,
@@ -24,8 +25,8 @@ data class UserDetail(
                 userName = userDetail.loginName,
                 avatarUrl = Uri.parse(userDetail.avatarUrl),
                 fullName = userDetail.name,
-                followerText = userDetail.followers.toString() + "人",
-                followingText = userDetail.following.toString() + "人",
+                followerText = userDetail.followers.toString() + " フォロワー",
+                followingText = userDetail.following.toString() + " フォロー",
                 repositories = repositories.map { Repository.of(it) },
             )
         }
