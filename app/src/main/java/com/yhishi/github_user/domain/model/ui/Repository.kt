@@ -21,7 +21,11 @@ data class Repository(
             return Repository(
                 id = repository.id,
                 name = repository.name,
-                language = "言語：" + repository.language,
+                language = if (repository.language != null) {
+                    "言語：" + repository.language
+                } else {
+                    "言語：なし"
+                },
                 starCountText = "☆" + repository.starCount.toString(),
                 description = repository.description,
                 fork = repository.fork,
