@@ -1,5 +1,6 @@
 package com.yhishi.github_user.domain.model.ui
 
+import java.io.Serializable
 import java.time.ZonedDateTime
 
 /**
@@ -14,7 +15,7 @@ data class Repository(
     val fork: Boolean,
     val repositoryUrl: String,
     val updatedTime: ZonedDateTime,
-) {
+) : Serializable {
     companion object {
         fun of(
             repository: com.yhishi.github_user.domain.model.api.Repository,
