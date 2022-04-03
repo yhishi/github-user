@@ -94,6 +94,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/followingText" />
 
+        <TextView
+            android:id="@+id/noRepositoryText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:text="@string/no_repository_message"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/recyclerView"
+            tools:visibility="invisible" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

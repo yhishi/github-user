@@ -40,7 +40,13 @@ class UserDetailFragment : Fragment(R.layout.user_detail_fragment) {
 
         val adapter = RepositoryAdapter()
         binding.recyclerView.adapter = adapter
-        adapter.submitList(userDetailData.repositories)
+
+        if (userDetailData.repositories.isNotEmpty()) {
+            adapter.submitList(userDetailData.repositories)
+            binding.noRepositoryText.visibility = View.INVISIBLE
+        } else {
+            binding.noRepositoryText.visibility = View.VISIBLE
+        }
     }
 
     companion object {
