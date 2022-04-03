@@ -19,7 +19,7 @@ interface RetrofitService {
     /**
      * ユーザー詳細情報を取得する
      */
-    @GET("search/users/{user_name}")
+    @GET("users/{user_name}")
     fun userDetail(@Path("user_name") userName: String): Single<UserDetail>
 
     /**
