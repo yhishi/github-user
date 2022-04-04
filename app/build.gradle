@@ -19,6 +19,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            def localProperties = new Properties()
+            localProperties.load(new FileInputStream('local.properties'))
+            buildConfigField("String", "GITHUB_TOKEN", "\"" + localProperties['githubToken'] + "\"")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
