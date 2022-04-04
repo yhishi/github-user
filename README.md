@@ -28,6 +28,12 @@ https://user-images.githubusercontent.com/26667944/161571499-5dbc6a07-70b4-4f48-
 - Rxjava3
 - Picasso
 
+#### 起動のための準備
+Githubから取得したpersonal access tokenを`local.properties`に記載する必要があります。
+```
+githubToken=[token]
+```
+
 #### ブランチ
 `develop`で開発を行いました。
 
