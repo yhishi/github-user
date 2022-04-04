@@ -1,6 +1,5 @@
 package com.yhishi.github_user.domain.model.ui
 
-import android.net.Uri
 import java.io.Serializable
 
 /**
@@ -9,7 +8,7 @@ import java.io.Serializable
 data class UserDetail(
     val id: Int,
     val userName: String,
-    val avatarUrl: Uri,
+    val avatarUrl: String,
     val fullName: String?,
     val followerText: String,
     val followingText: String,
@@ -23,7 +22,7 @@ data class UserDetail(
             return UserDetail(
                 id = userDetail.id,
                 userName = userDetail.loginName,
-                avatarUrl = Uri.parse(userDetail.avatarUrl),
+                avatarUrl = userDetail.avatarUrl,
                 fullName = userDetail.name,
                 followerText = userDetail.followers.toString() + " フォロワー",
                 followingText = userDetail.following.toString() + " フォロー",
