@@ -1,9 +1,13 @@
 package com.yhishi.github_user.view.userDetail
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.browser.customtabs.CustomTabColorSchemeParams
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
@@ -39,7 +43,7 @@ class UserDetailFragment : Fragment(R.layout.user_detail_fragment) {
             .into(binding.avatarImage)
 
         val adapter = RepositoryAdapter { repositoryUrl ->
-
+            launchCustomTabsIntent(repositoryUrl)
         }
         binding.recyclerView.adapter = adapter
 
@@ -49,6 +53,21 @@ class UserDetailFragment : Fragment(R.layout.user_detail_fragment) {
         } else {
             binding.noRepositoryText.visibility = View.VISIBLE
         }
+    }
+
+    private fun launchCustomTabsIntent(repositoryUrl: String) {
+        val colorSchemeParams = CustomTabColorSchemeParams.Builder()
+            .setToolbarColor(ContextCompat.getColor(requireContext(), android.R.color.white))
+            .setNavigationBarColor(ContextCompat.getColor(requireContext(), android.R.color.black))
+            .setNavigationBarDividerColor(ContextCompat.getColor(requireContext(), android.R.color.transparent))
+            .build()
+
+        val intent = CustomTabsIntent.Builder()
+            .setDefaultColorSchemeParams(colorSchemeParams)
+            .setShowTitle(true)
+            .build()
+
+        intent.launchUrl(requireContext(), Uri.parse(repositoryUrl))
     }
 
     companion object {
