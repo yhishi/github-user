@@ -31,14 +31,21 @@ class ServiceModule {
     @Singleton
     @Provides
     fun providesOkHttpClient(): OkHttpClient {
+        val token = com.yhishi.github_user.BuildConfig.GITHUB_TOKEN
         return OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .authenticator { _, response ->
-                val token = com.yhishi.github_user.BuildConfig.GITHUB_TOKEN
                 response.request.newBuilder().header("Authorization", "Bearer $token").build()
             }
+            .addInterceptor(Interceptor { chain ->
+                val request = chain.request()
+                    .newBuilder()
+                    .addHeader("Authorization", "Bearer $token")
+                    .build()
+                chain.proceed(request)
+            })
             .apply {
                 if (BuildConfig.DEBUG) {
                     addInterceptor(HttpLoggingInterceptor().apply {
