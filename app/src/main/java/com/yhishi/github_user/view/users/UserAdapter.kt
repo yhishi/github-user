@@ -50,7 +50,7 @@ class UserAdapter(
                 .load(data.avatarUrl)
                 .into(avatarImage)
 
-            cardView.setOnClickListener {
+            root.setOnClickListener {
                 onClickItem(data.userName)
             }
         }
